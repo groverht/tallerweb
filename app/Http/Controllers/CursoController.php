@@ -36,6 +36,20 @@ class CursoController extends Controller
 
     public function edit(Curso $curso)
     {
-        return $curso;
+        return view('cursos.edit', compact('curso'));
+    }
+    public function update(Curso $curso, Request $request)
+    {
+        $curso->nombre = $request->nombre;
+        $curso->descripcion = $request->descripcion;
+        $curso->categoria = $request->categoria;
+
+        $curso->save();
+        return redirect()->route('cursos.show', $curso);
+    }
+    public function destroy(Curso $curso)
+    {
+        $curso->delete();
+        return redirect()->route('cursos.index');
     }
 }
