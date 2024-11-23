@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Alumno;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,17 @@ class AlumnoFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Alumno::class;
     public function definition(): array
     {
         return [
             //
+            'DNI' => $this->faker->unique()->numerify('########'),
+            'nombre' => $this->faker->name(),
+            'apellidos' => $this->faker->lastName(),
+            'edad' => $this->faker->numberBetween(18, 30),
+            'telefono' => $this->faker->numerify('9########'),
+            'direccion' => $this->faker->address()
         ];
     }
 }
